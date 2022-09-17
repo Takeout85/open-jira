@@ -1,5 +1,6 @@
 import mongoose, { Model, Schema } from 'mongoose';
 import { Entry } from '../interfaces';
+
 export interface IEntry extends Entry {}
 
 const entrySchema = new Schema({
@@ -9,7 +10,7 @@ const entrySchema = new Schema({
     type: String,
     enum: {
       values: ['pending', 'in-progress', 'finished'],
-      message: '{VALUE} is not a valid status',
+      message: '{VALUE} no es un estado permitido',
     },
     default: 'pending',
   },

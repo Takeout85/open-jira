@@ -4,26 +4,29 @@ interface SeedData {
 
 interface SeedEntry {
   description: string;
-  createdAt: number;
   status: string;
+  createdAt: number;
 }
 
 export const seedData: SeedData = {
   entries: [
     {
-      description: 'PENDIENTE dfjgvbh disjhfiods hfgoidshjoiueshjfoi ',
+      description:
+        'Pendiente: Proident dolor duis elit sunt qui dolor laborum veniam ea laboris qui consequat.',
       status: 'pending',
       createdAt: Date.now(),
     },
     {
-      description: 'IN-PROGRESS 100000 disjhfiods hfgoidshjoiueshjfoi ',
+      description:
+        'En-Progreso Veniam in cupidatat adipisicing Lorem sunt est est ex cillum laboris fugiat officia fugiat.',
       status: 'in-progress',
-      createdAt: Date.now() - 100000,
+      createdAt: Date.now() - 1000000,
     },
     {
-      description: 'FINISHED 1000 disjhfiods hfgoidshjoiueshjfoi ',
+      description:
+        'Terminadas: Commodo veniam aliqua tempor officia officia non laborum.',
       status: 'finished',
-      createdAt: Date.now() - 10000000000,
+      createdAt: Date.now() - 100000,
     },
   ],
 };
