@@ -81,7 +81,7 @@ const deleteEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { id } = req.query;
 
   try {
-    await db.disconnect();
+    await db.connect();
     await Entry.deleteOne({ _id: id });
     await db.disconnect();
     return res.status(200).json({ message: 'Se ha eliminado correctamente' });
