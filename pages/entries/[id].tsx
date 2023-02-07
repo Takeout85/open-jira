@@ -32,7 +32,7 @@ interface Props {
 }
 
 const EntryPage: FC<Props> = ({ entry }) => {
-  const { updateEntry } = useContext(EntriesContext);
+  const { updateEntry, deleteEntry } = useContext(EntriesContext);
   const [inputValue, setInputValue] = useState(entry.description);
   const [status, setStatus] = useState<EntryStatus>(entry.status);
   const [touched, setTouched] = useState(false);
@@ -51,7 +51,10 @@ const EntryPage: FC<Props> = ({ entry }) => {
   const onStatusChanged = (event: ChangeEvent<HTMLInputElement>) => {
     setStatus(event.target.value as EntryStatus);
   };
-
+  const onDelete = () => {
+    deleteEntry(entry);
+    router.push('/');
+  };
   const onSave = () => {
     if (inputValue.trim().length === 0) return;
     const updatedEntry: Entry = {
@@ -122,6 +125,7 @@ const EntryPage: FC<Props> = ({ entry }) => {
           right: 30,
           backgroundColor: 'red',
         }}
+        onClick={onDelete}
       >
         <DeleteOutlinedIcon />
       </IconButton>

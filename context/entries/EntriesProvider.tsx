@@ -5,7 +5,7 @@ import { entriesApi } from '../../utilsapis';
 import { Entry } from '../../interfaces';
 import { EntriesContext, entriesReducer } from './index';
 export interface EntriesState {
-  entries: Entry[];
+  entries: Entry[] | [];
 }
 
 const Entries_INITIAL_STATE: EntriesState = {
@@ -52,6 +52,15 @@ export const EntriesProvider: FC<Props> = ({ children }) => {
     }
   };
 
+  const deleteEntry = async ({ _id }: Entry) => {
+    try {
+      const { data } = await entriesApi.delete<Entry>(`/entries/${_id}`);
+      dispatch({ type: '[Entry] Entry-Deleted', payload: data });
+    } catch (error) {
+      console.error({ error });
+    }
+  };
+
   const refreshEntries = async () => {
     const { data } = await entriesApi.get<Entry[]>('/entries');
     dispatch({ type: '[Entry] Refresh-Data', payload: data });
@@ -69,6 +78,7 @@ export const EntriesProvider: FC<Props> = ({ children }) => {
         //Methods
         addNewEntry,
         updateEntry,
+        deleteEntry,
       }}
     >
       {children}
